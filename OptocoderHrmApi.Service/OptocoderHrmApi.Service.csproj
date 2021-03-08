@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\OptocoderHrmApi.Data\OptocoderHrmApi.Data.csproj" />
+    <ProjectReference Include="..\OptocoderHrmApi.Repository\OptocoderHrmApi.Repository.csproj" />
+  </ItemGroup>
+
+</Project>
