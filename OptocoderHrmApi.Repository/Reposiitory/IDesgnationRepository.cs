@@ -9,7 +9,7 @@ using System.Linq;
 
 namespace OptocoderHrmApi.Repository.Reposiitory
 {
-    public interface IiDesgnationRepository
+    public interface IDesgnationRepository
     {
         Task<List<Position>> GetPositionList();
         Task<Position> GetPosition(int id);
@@ -18,7 +18,7 @@ namespace OptocoderHrmApi.Repository.Reposiitory
         Task<string> UpdatePosition(int id, Position position);
     }
 
-    public class DesinationRepository : IiDesgnationRepository
+    public class DesinationRepository : IDesgnationRepository
     {
         private readonly DataContext _context;
 

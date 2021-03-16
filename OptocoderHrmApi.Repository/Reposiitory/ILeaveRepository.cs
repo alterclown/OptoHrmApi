@@ -6,12 +6,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
+using OptocoderHrmApi.Data.Paging;
 
 namespace OptocoderHrmApi.Repository.Reposiitory
 {
     public interface ILeaveRepository
     {
-        Task<List<Leave>> GetLeaveList();
+        Task<List<Leave>> GetLeaveList(Paging paging);
         Task<Leave> GetLeave(int id);
         Task<Leave> CreateNewLeave(Leave leave);
         Task<string> DeleteLeave(int id);
@@ -74,19 +75,16 @@ namespace OptocoderHrmApi.Repository.Reposiitory
             }
         }
 
-        public async Task<List<Leave>> GetLeaveList()
+
+        public async Task<List<Leave>> GetLeaveList(Paging paging)
         {
             try
             {
-                var res = from c in _context.Leaves
-                          orderby c.LeaveId ascending
-                          select c;
 
-                var items = _context.Leaves.Skip((2 - 1) * 10).Take(10).ToListAsync();
-
-
-
-                return await items;
+                int CurrentPage = paging.pageNumber;
+                int PageSize = paging.pageSize;
+                var items = await _context.Leaves.Skip((CurrentPage - 1) * PageSize).Take(PageSize).ToListAsync();
+                return items;
 
             }
             catch (Exception ex)

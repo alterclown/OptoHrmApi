@@ -17,9 +17,9 @@ namespace OptocoderHrmApi.Service.Services
     }
     public class DesignationService : IDesignationService
     {
-        private readonly IiDesgnationRepository _reepository;
+        private readonly IDesgnationRepository _reepository;
 
-        public DesignationService(IiDesgnationRepository repository)
+        public DesignationService(IDesgnationRepository repository)
         {
             _reepository = repository;
         }

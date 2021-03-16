@@ -37,7 +37,7 @@ namespace OptocoderHrmApi
             services.AddScoped<IPayrollService, PayrollService>();
             services.AddScoped<IPayrollRepository, PayrollRepository>();
             services.AddScoped<IDesignationService, DesignationService>();
-            services.AddScoped<IiDesgnationRepository, DesinationRepository>();
+            services.AddScoped<IDesgnationRepository, DesinationRepository>();
             services.AddScoped<ITaxService, TaxService>();
             services.AddScoped<ITaxRepository, TaxRepository>();
             services.AddScoped<ITrainingService, TrainingService>();

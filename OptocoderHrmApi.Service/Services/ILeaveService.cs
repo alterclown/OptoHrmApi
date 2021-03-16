@@ -1,4 +1,5 @@
 ﻿using OptocoderHrmApi.Data.Entities;
+using OptocoderHrmApi.Data.Paging;
 using OptocoderHrmApi.Repository.Reposiitory;
 using System;
 using System.Collections.Generic;
@@ -9,7 +10,7 @@ namespace OptocoderHrmApi.Service.Services
 {
     public interface ILeaveService
     {
-        Task<List<Leave>> GetLeaveList();
+        Task<List<Leave>> GetLeaveList(Paging paging);
         Task<Leave> GetLeave(int id);
         Task<Leave> CreateNewLeave(Leave leave);
         Task<string> DeleteLeave(int id);
@@ -65,11 +66,11 @@ namespace OptocoderHrmApi.Service.Services
             }
         }
 
-        public async Task<List<Leave>> GetLeaveList()
+        public async Task<List<Leave>> GetLeaveList(Paging paging)
         {
             try
             {
-                var res = await _repository.GetLeaveList();
+                var res = await _repository.GetLeaveList(paging);
                 return res;
             }
             catch (Exception ex)
