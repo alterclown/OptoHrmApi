@@ -8,7 +8,6 @@ namespace OptocoderHrmApi.Data.Entities
     public partial class Payroll
     {
         public int PayrollId { get; set; }
-        public int? EmployeeId { get; set; }
         public string Month { get; set; }
         public string Year { get; set; }
         public string TotalPresent { get; set; }
@@ -32,11 +31,18 @@ namespace OptocoderHrmApi.Data.Entities
         public string Earnings { get; set; }
         public string Deductions { get; set; }
         public string NetPay { get; set; }
+        public int EmployeeId { get; set; }
         public int CompanyId { get; set; }
         public int UserId { get; set; }
+        public int SalaryId { get; set; }
+        public int AttendanceId { get; set; }
+        public int LoanId { get; set; }
 
+        public virtual Attendance Attendance { get; set; }
         public virtual Company Company { get; set; }
         public virtual Employee Employee { get; set; }
+        public virtual Loan Loan { get; set; }
+        public virtual Salary Salary { get; set; }
         public virtual User User { get; set; }
     }
 }

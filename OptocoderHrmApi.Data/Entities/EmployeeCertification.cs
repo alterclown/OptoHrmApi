@@ -5,16 +5,20 @@ using System.Collections.Generic;
 
 namespace OptocoderHrmApi.Data.Entities
 {
-    public partial class EmployeeProject
+    public partial class EmployeeCertification
     {
-        public int EmployeeProjectId { get; set; }
-        public string EmployeeProjectName { get; set; }
+        public int EmployeeCertificationId { get; set; }
         public string EmployeeName { get; set; }
-        public string Details { get; set; }
+        public string Certification { get; set; }
+        public string Institute { get; set; }
+        public DateTime GrantedOn { get; set; }
+        public DateTime ValidThru { get; set; }
         public int EmployeeId { get; set; }
         public int CompanyId { get; set; }
         public int UserId { get; set; }
+        public int CertificationId { get; set; }
 
+        public virtual Certification CertificationNavigation { get; set; }
         public virtual Company Company { get; set; }
         public virtual Employee Employee { get; set; }
         public virtual User User { get; set; }

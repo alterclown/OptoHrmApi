@@ -5,12 +5,10 @@ using System.Collections.Generic;
 
 namespace OptocoderHrmApi.Data.Entities
 {
-    public partial class Taxis
+    public partial class MyProject
     {
-        public int TaxesId { get; set; }
-        public string TaxName { get; set; }
-        public int? TaxValue { get; set; }
-        public string Status { get; set; }
+        public int MyProjectId { get; set; }
+        public string MyProjectName { get; set; }
         public int EmployeeId { get; set; }
         public int CompanyId { get; set; }
         public int UserId { get; set; }

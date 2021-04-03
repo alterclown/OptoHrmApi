@@ -12,8 +12,6 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using OptocoderHrmApi.Data.DbContexts;
 using OptocoderHrmApi.Data.Entities;
-using OptocoderHrmApi.Repository.Reposiitory;
-using OptocoderHrmApi.Service.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;

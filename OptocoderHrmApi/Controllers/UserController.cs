@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using OptocoderHrmApi.Data.Entities;
-using OptocoderHrmApi.Service.Services;
+using OptocoderHrmApi.Service.HrmService;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -56,7 +56,7 @@ namespace OptocoderHrmApi.Controllers
         }
         [HttpPost]
         [Route("PostUser")]
-        public async Task<IActionResult> PostLoginInfo( User users)
+        public async Task<IActionResult> PostLoginInfo(User users)
         {
             try
             {

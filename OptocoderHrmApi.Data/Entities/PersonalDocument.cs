@@ -5,12 +5,14 @@ using System.Collections.Generic;
 
 namespace OptocoderHrmApi.Data.Entities
 {
-    public partial class Taxis
+    public partial class PersonalDocument
     {
-        public int TaxesId { get; set; }
-        public string TaxName { get; set; }
-        public int? TaxValue { get; set; }
+        public int PersonalDocumentId { get; set; }
+        public byte[] Document { get; set; }
+        public DateTime ValidUntil { get; set; }
         public string Status { get; set; }
+        public string Details { get; set; }
+        public byte[] Attachment { get; set; }
         public int EmployeeId { get; set; }
         public int CompanyId { get; set; }
         public int UserId { get; set; }

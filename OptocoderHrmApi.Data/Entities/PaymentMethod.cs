@@ -5,12 +5,15 @@ using System.Collections.Generic;
 
 namespace OptocoderHrmApi.Data.Entities
 {
-    public partial class Taxis
+    public partial class PaymentMethod
     {
-        public int TaxesId { get; set; }
-        public string TaxName { get; set; }
-        public int? TaxValue { get; set; }
-        public string Status { get; set; }
+        public PaymentMethod()
+        {
+            EmployeeExpenses = new HashSet<EmployeeExpense>();
+        }
+
+        public int PaymentMethodId { get; set; }
+        public string PaymentMethodName { get; set; }
         public int EmployeeId { get; set; }
         public int CompanyId { get; set; }
         public int UserId { get; set; }
@@ -18,5 +21,6 @@ namespace OptocoderHrmApi.Data.Entities
         public virtual Company Company { get; set; }
         public virtual Employee Employee { get; set; }
         public virtual User User { get; set; }
+        public virtual ICollection<EmployeeExpense> EmployeeExpenses { get; set; }
     }
 }

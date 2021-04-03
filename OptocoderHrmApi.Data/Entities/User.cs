@@ -9,18 +9,40 @@ namespace OptocoderHrmApi.Data.Entities
     {
         public User()
         {
-            Departments = new HashSet<Department>();
-            EmployeeAttendances = new HashSet<EmployeeAttendance>();
+            Attendances = new HashSet<Attendance>();
+            EmployeeArchiveds = new HashSet<EmployeeArchived>();
+            EmployeeCertifications = new HashSet<EmployeeCertification>();
+            EmployeeDeactivateds = new HashSet<EmployeeDeactivated>();
+            EmployeeDependents = new HashSet<EmployeeDependent>();
+            EmployeeEducations = new HashSet<EmployeeEducation>();
+            EmployeeEmergencyContacts = new HashSet<EmployeeEmergencyContact>();
+            EmployeeExpenses = new HashSet<EmployeeExpense>();
+            EmployeeLanguages = new HashSet<EmployeeLanguage>();
+            EmployeeLeaves = new HashSet<EmployeeLeave>();
             EmployeeProjects = new HashSet<EmployeeProject>();
-            EmployeeSalaries = new HashSet<EmployeeSalary>();
+            EmployeeSkills = new HashSet<EmployeeSkill>();
             Employees = new HashSet<Employee>();
-            GeoLocations = new HashSet<GeoLocation>();
-            Leaves = new HashSet<Leave>();
+            Expenses = new HashSet<Expense>();
+            Holidays = new HashSet<Holiday>();
+            LeavePeriods = new HashSet<LeavePeriod>();
+            LeaveRules = new HashSet<LeaveRule>();
+            LeaveTypes = new HashSet<LeaveType>();
+            LoanTypes = new HashSet<LoanType>();
             Loans = new HashSet<Loan>();
+            MonitorAttendances = new HashSet<MonitorAttendance>();
+            MyProjects = new HashSet<MyProject>();
+            OverTimeRequests = new HashSet<OverTimeRequest>();
+            OverTimes = new HashSet<OverTime>();
+            PaidTimeOffs = new HashSet<PaidTimeOff>();
+            PaymentMethods = new HashSet<PaymentMethod>();
             Payrolls = new HashSet<Payroll>();
-            Positions = new HashSet<Position>();
+            PersonalDocuments = new HashSet<PersonalDocument>();
+            Salaries = new HashSet<Salary>();
             Taxes = new HashSet<Taxis>();
-            training = new HashSet<training>();
+            TrainingSessions = new HashSet<TrainingSession>();
+            TrainingSetups = new HashSet<TrainingSetup>();
+            Travels = new HashSet<Travel>();
+            WorkWeeks = new HashSet<WorkWeek>();
         }
 
         public int UserId { get; set; }
@@ -37,17 +59,39 @@ namespace OptocoderHrmApi.Data.Entities
         public int CompanyId { get; set; }
 
         public virtual Company Company { get; set; }
-        public virtual ICollection<Department> Departments { get; set; }
-        public virtual ICollection<EmployeeAttendance> EmployeeAttendances { get; set; }
+        public virtual ICollection<Attendance> Attendances { get; set; }
+        public virtual ICollection<EmployeeArchived> EmployeeArchiveds { get; set; }
+        public virtual ICollection<EmployeeCertification> EmployeeCertifications { get; set; }
+        public virtual ICollection<EmployeeDeactivated> EmployeeDeactivateds { get; set; }
+        public virtual ICollection<EmployeeDependent> EmployeeDependents { get; set; }
+        public virtual ICollection<EmployeeEducation> EmployeeEducations { get; set; }
+        public virtual ICollection<EmployeeEmergencyContact> EmployeeEmergencyContacts { get; set; }
+        public virtual ICollection<EmployeeExpense> EmployeeExpenses { get; set; }
+        public virtual ICollection<EmployeeLanguage> EmployeeLanguages { get; set; }
+        public virtual ICollection<EmployeeLeave> EmployeeLeaves { get; set; }
         public virtual ICollection<EmployeeProject> EmployeeProjects { get; set; }
-        public virtual ICollection<EmployeeSalary> EmployeeSalaries { get; set; }
+        public virtual ICollection<EmployeeSkill> EmployeeSkills { get; set; }
         public virtual ICollection<Employee> Employees { get; set; }
-        public virtual ICollection<GeoLocation> GeoLocations { get; set; }
-        public virtual ICollection<Leave> Leaves { get; set; }
+        public virtual ICollection<Expense> Expenses { get; set; }
+        public virtual ICollection<Holiday> Holidays { get; set; }
+        public virtual ICollection<LeavePeriod> LeavePeriods { get; set; }
+        public virtual ICollection<LeaveRule> LeaveRules { get; set; }
+        public virtual ICollection<LeaveType> LeaveTypes { get; set; }
+        public virtual ICollection<LoanType> LoanTypes { get; set; }
         public virtual ICollection<Loan> Loans { get; set; }
+        public virtual ICollection<MonitorAttendance> MonitorAttendances { get; set; }
+        public virtual ICollection<MyProject> MyProjects { get; set; }
+        public virtual ICollection<OverTimeRequest> OverTimeRequests { get; set; }
+        public virtual ICollection<OverTime> OverTimes { get; set; }
+        public virtual ICollection<PaidTimeOff> PaidTimeOffs { get; set; }
+        public virtual ICollection<PaymentMethod> PaymentMethods { get; set; }
         public virtual ICollection<Payroll> Payrolls { get; set; }
-        public virtual ICollection<Position> Positions { get; set; }
+        public virtual ICollection<PersonalDocument> PersonalDocuments { get; set; }
+        public virtual ICollection<Salary> Salaries { get; set; }
         public virtual ICollection<Taxis> Taxes { get; set; }
-        public virtual ICollection<training> training { get; set; }
+        public virtual ICollection<TrainingSession> TrainingSessions { get; set; }
+        public virtual ICollection<TrainingSetup> TrainingSetups { get; set; }
+        public virtual ICollection<Travel> Travels { get; set; }
+        public virtual ICollection<WorkWeek> WorkWeeks { get; set; }
     }
 }
