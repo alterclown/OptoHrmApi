@@ -24,6 +24,8 @@ namespace OptocoderHrmApi
             services.AddScoped<ICertificationRepository, CertificationRepository>();
             services.AddScoped<IClientService, ClientService>();
             services.AddScoped<IClientRepository, ClientRepository>();
+            services.AddScoped<IEducationService, EducationService>();
+            services.AddScoped<IEducationRepository, EducationRepository>();
         }
     }
 
