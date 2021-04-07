@@ -14,12 +14,10 @@ namespace OptocoderHrmApi.Data.Entities
 
         public int ExpenseId { get; set; }
         public string ExpenseName { get; set; }
-        public int EmployeeId { get; set; }
         public int CompanyId { get; set; }
         public int UserId { get; set; }
 
         public virtual Company Company { get; set; }
-        public virtual Employee Employee { get; set; }
         public virtual User User { get; set; }
         public virtual ICollection<EmployeeExpense> EmployeeExpenses { get; set; }
     }

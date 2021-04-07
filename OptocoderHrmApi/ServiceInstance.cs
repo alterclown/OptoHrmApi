@@ -28,6 +28,8 @@ namespace OptocoderHrmApi
             services.AddScoped<IEducationRepository, EducationRepository>();
             services.AddScoped<IEmploymentStatusService, EmploymentStatusService>();
             services.AddScoped<IEmploymentStatusRepository, EmploymentStatusRepository>();
+            services.AddScoped<IExpenseService, ExpenseService>();
+            services.AddScoped<IExpenseRepository, ExpenseRepository>();
         }
     }
 

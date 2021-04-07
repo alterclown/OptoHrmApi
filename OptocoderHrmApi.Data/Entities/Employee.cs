@@ -21,7 +21,6 @@ namespace OptocoderHrmApi.Data.Entities
             EmployeeLeaves = new HashSet<EmployeeLeave>();
             EmployeeProjects = new HashSet<EmployeeProject>();
             EmployeeSkills = new HashSet<EmployeeSkill>();
-            Expenses = new HashSet<Expense>();
             Holidays = new HashSet<Holiday>();
             LeavePeriods = new HashSet<LeavePeriod>();
             LeaveRules = new HashSet<LeaveRule>();
@@ -101,7 +100,6 @@ namespace OptocoderHrmApi.Data.Entities
         public virtual ICollection<EmployeeLeave> EmployeeLeaves { get; set; }
         public virtual ICollection<EmployeeProject> EmployeeProjects { get; set; }
         public virtual ICollection<EmployeeSkill> EmployeeSkills { get; set; }
-        public virtual ICollection<Expense> Expenses { get; set; }
         public virtual ICollection<Holiday> Holidays { get; set; }
         public virtual ICollection<LeavePeriod> LeavePeriods { get; set; }
         public virtual ICollection<LeaveRule> LeaveRules { get; set; }

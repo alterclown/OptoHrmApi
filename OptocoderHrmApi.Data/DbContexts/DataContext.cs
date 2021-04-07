@@ -723,12 +723,6 @@ namespace OptocoderHrmApi.Data.DbContexts
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK__Expense__Company__6CD828CA");
 
-                entity.HasOne(d => d.Employee)
-                    .WithMany(p => p.Expenses)
-                    .HasForeignKey(d => d.EmployeeId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Expense__Employe__6BE40491");
-
                 entity.HasOne(d => d.User)
                     .WithMany(p => p.Expenses)
                     .HasForeignKey(d => d.UserId)
