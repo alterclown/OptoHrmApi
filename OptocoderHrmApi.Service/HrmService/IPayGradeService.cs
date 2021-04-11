@@ -1,15 +1,13 @@
-﻿using OptocoderHrmApi.Data.DbContexts;
-using OptocoderHrmApi.Data.Entities;
+﻿using OptocoderHrmApi.Data.Entities;
+using OptocoderHrmApi.Repository.HrmRepository;
 using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
-using System.Linq;
-using Microsoft.EntityFrameworkCore;
 
-namespace OptocoderHrmApi.Repository.HrmRepository
+namespace OptocoderHrmApi.Service.HrmService
 {
-    public interface IPayGradeRepository
+    public interface IPayGradeService
     {
         Task<ICollection<PayGrade>> GetPayGradeList();
         Task<PayGrade> GetPayGrade(int id);
@@ -19,21 +17,20 @@ namespace OptocoderHrmApi.Repository.HrmRepository
         Task<string> UpdatePayGrade(int id, PayGrade payGrade);
     }
 
-    public class PayGradeRepository : IPayGradeRepository
+    public class PayGradeService : IPayGradeService
     {
-        private readonly DataContext _context;
+        private readonly IPayGradeRepository _repository;
 
-        public PayGradeRepository(DataContext context)
+        public PayGradeService(IPayGradeRepository repository)
         {
-            _context = context;
+            _repository = repository;
         }
         public async Task<PayGrade> CreateNewPayGrade(PayGrade payGrade)
         {
             try
             {
-                _context.PayGrades.Add(payGrade);
-                await _context.SaveChangesAsync();
-                return payGrade;
+                var res = await _repository.CreateNewPayGrade(payGrade);
+                return res;
             }
             catch (Exception ex)
             {
@@ -46,10 +43,8 @@ namespace OptocoderHrmApi.Repository.HrmRepository
         {
             try
             {
-                var response = await _context.PayGrades.FindAsync(id);
-                _context.PayGrades.Remove(response);
-                await _context.SaveChangesAsync();
-                return "Deleted SuccessFully";
+                var res = await _repository.DeletePayGrade(id);
+                return res;
             }
             catch (Exception ex)
             {
@@ -62,7 +57,7 @@ namespace OptocoderHrmApi.Repository.HrmRepository
         {
             try
             {
-                var res = await _context.PayGrades.FirstOrDefaultAsync(m => m.PayGradeId == id);
+                var res = await _repository.GetPayGrade(id);
                 return res;
             }
             catch (Exception ex)
@@ -76,10 +71,8 @@ namespace OptocoderHrmApi.Repository.HrmRepository
         {
             try
             {
-                var response = from c in _context.PayGrades
-                               orderby c.PayGradeId descending
-                               select c;
-                return await response.ToListAsync();
+                var res = await _repository.GetPayGradeList();
+                return res;
             }
             catch (Exception ex)
             {
@@ -92,13 +85,8 @@ namespace OptocoderHrmApi.Repository.HrmRepository
         {
             try
             {
-                var res = await _context.PayGrades.FirstOrDefaultAsync(m => m.PayGradeId == id);
-                res.PayGradeName = payGrade.PayGradeName;
-                res.MinSalary = payGrade.MinSalary;
-                res.MaxSalary = payGrade.MaxSalary;
-                _context.Update(res);
-                await _context.SaveChangesAsync();
-                return "Updated Record";
+                var res = await _repository.UpdatePayGrade(id, payGrade);
+                return res;
             }
             catch (Exception ex)
             {

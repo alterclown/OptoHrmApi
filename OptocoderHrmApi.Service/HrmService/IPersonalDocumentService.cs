@@ -1,15 +1,13 @@
 ﻿using OptocoderHrmApi.Data.Entities;
+using OptocoderHrmApi.Repository.HrmRepository;
 using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
-using System.Linq;
-using Microsoft.EntityFrameworkCore;
-using OptocoderHrmApi.Data.DbContexts;
 
-namespace OptocoderHrmApi.Repository.HrmRepository
+namespace OptocoderHrmApi.Service.HrmService
 {
-    public interface IPersonalDocumentRepository
+    public interface IPersonalDocumentService
     {
         Task<ICollection<PersonalDocument>> GetPersonalDocumentList();
         Task<PersonalDocument> GetPersonalDocument(int id);
@@ -19,21 +17,20 @@ namespace OptocoderHrmApi.Repository.HrmRepository
         Task<string> UpdatePersonalDocument(int id, PersonalDocument personalDocument);
     }
 
-    public class PersonalDocumentRepository : IPersonalDocumentRepository
+    public class PersonalDocumentService : IPersonalDocumentService
     {
-        private readonly DataContext _context;
+        private readonly IPersonalDocumentRepository _repository;
 
-        public PersonalDocumentRepository(DataContext context)
+        public PersonalDocumentService(IPersonalDocumentRepository repository)
         {
-            _context = context;
+            _repository = repository;
         }
         public async Task<PersonalDocument> CreateNewPersonalDocument(PersonalDocument personalDocument)
         {
             try
             {
-                _context.PersonalDocuments.Add(personalDocument);
-                await _context.SaveChangesAsync();
-                return personalDocument;
+                var res = await _repository.CreateNewPersonalDocument(personalDocument);
+                return res;
             }
             catch (Exception ex)
             {
@@ -46,10 +43,8 @@ namespace OptocoderHrmApi.Repository.HrmRepository
         {
             try
             {
-                var response = await _context.PersonalDocuments.FindAsync(id);
-                _context.PersonalDocuments.Remove(response);
-                await _context.SaveChangesAsync();
-                return "Deleted SuccessFully";
+                var res = await _repository.DeletePersonalDocument(id);
+                return res;
             }
             catch (Exception ex)
             {
@@ -62,7 +57,7 @@ namespace OptocoderHrmApi.Repository.HrmRepository
         {
             try
             {
-                var res = await _context.PersonalDocuments.FirstOrDefaultAsync(m => m.PersonalDocumentId == id);
+                var res = await _repository.GetPersonalDocument(id);
                 return res;
             }
             catch (Exception ex)
@@ -76,10 +71,8 @@ namespace OptocoderHrmApi.Repository.HrmRepository
         {
             try
             {
-                var response = from c in _context.PersonalDocuments
-                               orderby c.PersonalDocumentId descending
-                               select c;
-                return await response.ToListAsync();
+                var res = await _repository.GetPersonalDocumentList();
+                return res;
             }
             catch (Exception ex)
             {
@@ -92,15 +85,8 @@ namespace OptocoderHrmApi.Repository.HrmRepository
         {
             try
             {
-                var res = await _context.PersonalDocuments.FirstOrDefaultAsync(m => m.PersonalDocumentId == id);
-                res.Document = personalDocument.Document;
-                res.ValidUntil = personalDocument.ValidUntil;
-                res.Status = personalDocument.Status;
-                res.Details = personalDocument.Details;
-                res.Attachment = personalDocument.Attachment;
-                _context.Update(res);
-                await _context.SaveChangesAsync();
-                return "Updated Record";
+                var res = await _repository.UpdatePersonalDocument(id, personalDocument);
+                return res;
             }
             catch (Exception ex)
             {

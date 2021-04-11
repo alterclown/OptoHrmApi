@@ -9,31 +9,31 @@ using Microsoft.EntityFrameworkCore;
 
 namespace OptocoderHrmApi.Repository.HrmRepository
 {
-    public interface IPayGradeRepository
+    public interface IPaymentMethodRepository
     {
-        Task<ICollection<PayGrade>> GetPayGradeList();
-        Task<PayGrade> GetPayGrade(int id);
-        Task<PayGrade> CreateNewPayGrade(PayGrade payGrade);
+        Task<ICollection<PaymentMethod>> GetPaymentMethodList();
+        Task<PaymentMethod> GetPaymentMethod(int id);
+        Task<PaymentMethod> CreateNewPaymentMethod(PaymentMethod paymentMethod);
 
-        Task<string> DeletePayGrade(int id);
-        Task<string> UpdatePayGrade(int id, PayGrade payGrade);
+        Task<string> DeletePaymentMethod(int id);
+        Task<string> UpdatePaymentMethod(int id, PaymentMethod paymentMethod);
     }
 
-    public class PayGradeRepository : IPayGradeRepository
+    public class PaymentMethodRepository : IPaymentMethodRepository
     {
         private readonly DataContext _context;
 
-        public PayGradeRepository(DataContext context)
+        public PaymentMethodRepository(DataContext context)
         {
             _context = context;
         }
-        public async Task<PayGrade> CreateNewPayGrade(PayGrade payGrade)
+        public async Task<PaymentMethod> CreateNewPaymentMethod(PaymentMethod paymentMethod)
         {
             try
             {
-                _context.PayGrades.Add(payGrade);
+                _context.PaymentMethods.Add(paymentMethod);
                 await _context.SaveChangesAsync();
-                return payGrade;
+                return paymentMethod;
             }
             catch (Exception ex)
             {
@@ -42,12 +42,12 @@ namespace OptocoderHrmApi.Repository.HrmRepository
             }
         }
 
-        public async Task<string> DeletePayGrade(int id)
+        public async Task<string> DeletePaymentMethod(int id)
         {
             try
             {
-                var response = await _context.PayGrades.FindAsync(id);
-                _context.PayGrades.Remove(response);
+                var response = await _context.PaymentMethods.FindAsync(id);
+                _context.PaymentMethods.Remove(response);
                 await _context.SaveChangesAsync();
                 return "Deleted SuccessFully";
             }
@@ -58,11 +58,11 @@ namespace OptocoderHrmApi.Repository.HrmRepository
             }
         }
 
-        public async Task<PayGrade> GetPayGrade(int id)
+        public async Task<PaymentMethod> GetPaymentMethod(int id)
         {
             try
             {
-                var res = await _context.PayGrades.FirstOrDefaultAsync(m => m.PayGradeId == id);
+                var res = await _context.PaymentMethods.FirstOrDefaultAsync(m => m.PaymentMethodId == id);
                 return res;
             }
             catch (Exception ex)
@@ -72,12 +72,12 @@ namespace OptocoderHrmApi.Repository.HrmRepository
             }
         }
 
-        public async Task<ICollection<PayGrade>> GetPayGradeList()
+        public async Task<ICollection<PaymentMethod>> GetPaymentMethodList()
         {
             try
             {
-                var response = from c in _context.PayGrades
-                               orderby c.PayGradeId descending
+                var response = from c in _context.PaymentMethods
+                               orderby c.PaymentMethodId descending
                                select c;
                 return await response.ToListAsync();
             }
@@ -88,14 +88,12 @@ namespace OptocoderHrmApi.Repository.HrmRepository
             }
         }
 
-        public async Task<string> UpdatePayGrade(int id, PayGrade payGrade)
+        public async Task<string> UpdatePaymentMethod(int id, PaymentMethod paymentMethod)
         {
             try
             {
-                var res = await _context.PayGrades.FirstOrDefaultAsync(m => m.PayGradeId == id);
-                res.PayGradeName = payGrade.PayGradeName;
-                res.MinSalary = payGrade.MinSalary;
-                res.MaxSalary = payGrade.MaxSalary;
+                var res = await _context.PaymentMethods.FirstOrDefaultAsync(m => m.PaymentMethodId == id);
+                res.PaymentMethodName = paymentMethod.PaymentMethodName;
                 _context.Update(res);
                 await _context.SaveChangesAsync();
                 return "Updated Record";
