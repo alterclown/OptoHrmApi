@@ -842,7 +842,7 @@ namespace OptocoderHrmApi.Data.DbContexts
             modelBuilder.Entity<LeaveRule>(entity =>
             {
                 entity.HasKey(e => e.LeaveRulesId)
-                    .HasName("PK__LeaveRul__FBDB6BE0D107A188");
+                    .HasName("PK__LeaveRul__FBDB6BE0FDDECCBE");
 
                 entity.Property(e => e.EmployeeName).HasMaxLength(20);
 
@@ -850,7 +850,7 @@ namespace OptocoderHrmApi.Data.DbContexts
 
                 entity.Property(e => e.Experience).HasMaxLength(20);
 
-                entity.Property(e => e.JobTitle).HasColumnType("date");
+                entity.Property(e => e.JobTitle).HasMaxLength(20);
 
                 entity.Property(e => e.LeaveGroup).HasMaxLength(20);
 
@@ -860,31 +860,31 @@ namespace OptocoderHrmApi.Data.DbContexts
                     .WithMany(p => p.LeaveRules)
                     .HasForeignKey(d => d.CompanyId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__LeaveRule__Compa__5BAD9CC8");
+                    .HasConstraintName("FK__LeaveRule__Compa__0880433F");
 
                 entity.HasOne(d => d.Employee)
                     .WithMany(p => p.LeaveRules)
                     .HasForeignKey(d => d.EmployeeId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__LeaveRule__Emplo__5AB9788F");
+                    .HasConstraintName("FK__LeaveRule__Emplo__09746778");
 
                 entity.HasOne(d => d.JobTitleNavigation)
                     .WithMany(p => p.LeaveRules)
                     .HasForeignKey(d => d.JobTitleId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__LeaveRule__JobTi__5E8A0973");
+                    .HasConstraintName("FK__LeaveRule__JobTi__0A688BB1");
 
                 entity.HasOne(d => d.LeaveType)
                     .WithMany(p => p.LeaveRules)
                     .HasForeignKey(d => d.LeaveTypeId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__LeaveRule__Leave__5D95E53A");
+                    .HasConstraintName("FK__LeaveRule__Leave__0B5CAFEA");
 
                 entity.HasOne(d => d.User)
                     .WithMany(p => p.LeaveRules)
                     .HasForeignKey(d => d.UserId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__LeaveRule__UserI__5CA1C101");
+                    .HasConstraintName("FK__LeaveRule__UserI__0C50D423");
             });
 
             modelBuilder.Entity<LeaveType>(entity =>

@@ -9,7 +9,7 @@ namespace OptocoderHrmApi.Data.Entities
     {
         public int LeaveRulesId { get; set; }
         public string LeaveGroup { get; set; }
-        public DateTime JobTitle { get; set; }
+        public string JobTitle { get; set; }
         public string EmploymentStatus { get; set; }
         public string EmployeeName { get; set; }
         public string Experience { get; set; }
