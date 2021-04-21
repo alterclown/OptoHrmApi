@@ -10,8 +10,8 @@ namespace OptocoderHrmApi.Data.Entities
         public int OverTimeRequestId { get; set; }
         public string EmployeeName { get; set; }
         public string Category { get; set; }
-        public string StartTime { get; set; }
-        public string EndTime { get; set; }
+        public DateTime? StartTime { get; set; }
+        public DateTime? EndTime { get; set; }
         public string Project { get; set; }
         public string Status { get; set; }
         public int EmployeeId { get; set; }

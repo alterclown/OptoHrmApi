@@ -1077,11 +1077,11 @@ namespace OptocoderHrmApi.Data.DbContexts
 
                 entity.Property(e => e.EmployeeName).HasMaxLength(20);
 
-                entity.Property(e => e.EndTime).HasMaxLength(20);
+                entity.Property(e => e.EndTime).HasColumnType("date");
 
                 entity.Property(e => e.Project).HasMaxLength(20);
 
-                entity.Property(e => e.StartTime).HasMaxLength(20);
+                entity.Property(e => e.StartTime).HasColumnType("date");
 
                 entity.Property(e => e.Status).HasMaxLength(20);
 
@@ -1089,25 +1089,25 @@ namespace OptocoderHrmApi.Data.DbContexts
                     .WithMany(p => p.OverTimeRequests)
                     .HasForeignKey(d => d.CompanyId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__OverTimeR__Compa__01D345B0");
+                    .HasConstraintName("FK__OverTimeR__Compa__1B9317B3");
 
                 entity.HasOne(d => d.Employee)
                     .WithMany(p => p.OverTimeRequests)
                     .HasForeignKey(d => d.EmployeeId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__OverTimeR__Emplo__00DF2177");
+                    .HasConstraintName("FK__OverTimeR__Emplo__1C873BEC");
 
                 entity.HasOne(d => d.OverTime)
                     .WithMany(p => p.OverTimeRequests)
                     .HasForeignKey(d => d.OverTimeId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__OverTimeR__OverT__03BB8E22");
+                    .HasConstraintName("FK__OverTimeR__OverT__1D7B6025");
 
                 entity.HasOne(d => d.User)
                     .WithMany(p => p.OverTimeRequests)
                     .HasForeignKey(d => d.UserId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__OverTimeR__UserI__02C769E9");
+                    .HasConstraintName("FK__OverTimeR__UserI__1E6F845E");
             });
 
             modelBuilder.Entity<PaidTimeOff>(entity =>
