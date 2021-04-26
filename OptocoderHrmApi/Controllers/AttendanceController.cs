@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using OptocoderHrmApi.Data.Entities;
+using OptocoderHrmApi.Data.Paging;
 using OptocoderHrmApi.Service.HrmService;
 using System;
 using System.Collections.Generic;
@@ -20,11 +21,11 @@ namespace OptocoderHrmApi.Controllers
         }
         [HttpGet]
         [Route("GetAttendanceList")]
-        public async Task<IActionResult> GetAttendanceList()
+        public async Task<IActionResult> GetAttendanceList([FromQuery] Paging paging)
         {
             try
             {
-                var response = await _service.GetAttendanceList();
+                var response = await _service.GetAttendanceList(paging);
                 if (response != null)
                 {
                     return Ok(response);

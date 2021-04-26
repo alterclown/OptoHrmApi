@@ -1,4 +1,5 @@
 ﻿using OptocoderHrmApi.Data.Entities;
+using OptocoderHrmApi.Data.Paging;
 using OptocoderHrmApi.Repository.HrmRepository;
 using System;
 using System.Collections.Generic;
@@ -9,7 +10,7 @@ namespace OptocoderHrmApi.Service.HrmService
 {
     public interface IAttendanceService
     {
-        Task<ICollection<Attendance>> GetAttendanceList();
+        Task<ICollection<Attendance>> GetAttendanceList(Paging paging);
         Task<Attendance> GetAttendance(int id);
         Task<Attendance> CreateNewAttendance(Attendance attendance);
 
@@ -67,11 +68,11 @@ namespace OptocoderHrmApi.Service.HrmService
             }
         }
 
-        public async Task<ICollection<Attendance>> GetAttendanceList()
+        public async Task<ICollection<Attendance>> GetAttendanceList(Paging paging)
         {
             try
             {
-                var res = await _repository.GetAttendanceList();
+                var res = await _repository.GetAttendanceList(paging);
                 return res;
             }
             catch (Exception ex)

@@ -6,12 +6,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
+using OptocoderHrmApi.Data.Paging;
 
 namespace OptocoderHrmApi.Repository.HrmRepository
 {
     public interface IAttendanceRepository
     {
-        Task<ICollection<Attendance>> GetAttendanceList();
+        Task<ICollection<Attendance>> GetAttendanceList(Paging paging);
         Task<Attendance> GetAttendance(int id);
         Task<Attendance> CreateNewAttendance(Attendance attendance);
 
@@ -72,14 +73,14 @@ namespace OptocoderHrmApi.Repository.HrmRepository
             }
         }
 
-        public async Task<ICollection<Attendance>> GetAttendanceList()
+        public async Task<ICollection<Attendance>> GetAttendanceList(Paging paging)
         {
             try
             {
-                var response = from c in _context.Attendances
-                               orderby c.AttendanceId descending
-                               select c;
-                return await response.ToListAsync();
+                int CurrentPage = paging.pageNumber;
+                int PageSize = paging.pageSize;
+                var items = await _context.Attendances.Skip((CurrentPage - 1) * PageSize).Take(PageSize).ToListAsync();
+                return items;
             }
             catch (Exception ex)
             {
