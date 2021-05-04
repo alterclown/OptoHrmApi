@@ -25,10 +25,13 @@ namespace OptocoderHrmApi.Controllers
         {
             try
             {
+                var validFilter = new Paging(paging.PageNumber, paging.PageSize);
                 var response = await _service.GetAttendanceList(paging);
-                if (response != null)
+                var totalRecords = await _service.GetAttendanceCount();
+                var res = PaginationHelper.CreatePagedReponse<Attendance>((List<Attendance>)response, validFilter, totalRecords);
+                if (res != null)
                 {
-                    return Ok(response);
+                    return Ok(res);
                 }
                 return StatusCode(StatusCodes.Status204NoContent);
             }

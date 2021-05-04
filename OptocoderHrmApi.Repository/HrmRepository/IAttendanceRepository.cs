@@ -14,6 +14,7 @@ namespace OptocoderHrmApi.Repository.HrmRepository
     {
         Task<ICollection<Attendance>> GetAttendanceList(Paging paging);
         Task<Attendance> GetAttendance(int id);
+        Task<int> GetAttendanceCount();
         Task<Attendance> CreateNewAttendance(Attendance attendance);
 
         Task<string> DeleteAttendance(int id);
@@ -73,14 +74,46 @@ namespace OptocoderHrmApi.Repository.HrmRepository
             }
         }
 
+        public async Task<int> GetAttendanceCount()
+        {
+            try
+            {
+                var res = await _context.Attendances.CountAsync();
+                return res;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
         public async Task<ICollection<Attendance>> GetAttendanceList(Paging paging)
         {
             try
             {
-                int CurrentPage = paging.pageNumber;
-                int PageSize = paging.pageSize;
-                var items = await _context.Attendances.Skip((CurrentPage - 1) * PageSize).Take(PageSize).ToListAsync();
-                return items;
+                //int CurrentPage = paging.PageNumber;
+                //int PageSize = paging.PageSize;
+                //var items = await _context.Attendances.Skip((CurrentPage - 1) * PageSize).Take(PageSize).ToListAsync();
+                //return items;
+
+                //var validFilter = new Paging(paging.PageNumber, paging.PageSize);
+                //var pagedData = await _context.Attendances
+                //    .Skip((validFilter.PageNumber - 1) * validFilter.PageSize)
+                //    .Take(validFilter.PageSize)
+                //    .ToListAsync();
+                //var totalRecords = await _context.Attendances.CountAsync();
+                //var pagedReponse = PaginationHelper.CreatePagedReponse<Attendance>(pagedData, validFilter, totalRecords);
+                //return (ICollection<Attendance>)pagedReponse;
+
+                var validFilter = new Paging(paging.PageNumber, paging.PageSize);
+                var pagedData = await _context.Attendances
+                   .Skip((validFilter.PageNumber - 1) * validFilter.PageSize)
+                   .Take(validFilter.PageSize)
+                   .ToListAsync();
+                //var totalRecords = await _context.Attendances.CountAsync();
+                //var pagedReponse = PaginationHelper.CreatePagedReponse<Attendance>(pagedData, validFilter, totalRecords);
+                return pagedData;
             }
             catch (Exception ex)
             {

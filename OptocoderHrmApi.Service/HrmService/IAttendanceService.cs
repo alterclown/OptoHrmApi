@@ -13,7 +13,7 @@ namespace OptocoderHrmApi.Service.HrmService
         Task<ICollection<Attendance>> GetAttendanceList(Paging paging);
         Task<Attendance> GetAttendance(int id);
         Task<Attendance> CreateNewAttendance(Attendance attendance);
-
+        Task<int> GetAttendanceCount();
         Task<string> DeleteAttendance(int id);
         Task<string> UpdateAttendance(int id, Attendance attendance);
     }
@@ -59,6 +59,20 @@ namespace OptocoderHrmApi.Service.HrmService
             try
             {
                 var res = await _repository.GetAttendance(id);
+                return res;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
+        public async Task<int> GetAttendanceCount()
+        {
+            try
+            {
+                var res = await _repository.GetAttendanceCount();
                 return res;
             }
             catch (Exception ex)

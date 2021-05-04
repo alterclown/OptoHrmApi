@@ -6,20 +6,17 @@ namespace OptocoderHrmApi.Data.Paging
 {
     public class Paging
     {
-        const int maxPageSize = 100;
-
-        public int pageNumber { get; set; } = 1;
-
-        public int _pageSize { get; set; } = 10;
-
-        public int pageSize
+        public int PageNumber { get; set; }
+        public int PageSize { get; set; }
+        public Paging()
         {
-
-            get { return _pageSize; }
-            set
-            {
-                _pageSize = (value > maxPageSize) ? maxPageSize : value;
-            }
+            this.PageNumber = 1;
+            this.PageSize = 10;
+        }
+        public Paging(int pageNumber, int pageSize)
+        {
+            this.PageNumber = pageNumber < 1 ? 1 : pageNumber;
+            this.PageSize = pageSize > 10 ? 10 : pageSize;
         }
     }
 }
