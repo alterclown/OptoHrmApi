@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30717.126
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OptocoderHrmApi", "OptocoderHrmApi\OptocoderHrmApi.csproj", "{9517FB2D-8C3F-4F99-9DFE-8F791AE94F18}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OptocoderHrmApi", "OptocoderHrmApi\OptocoderHrmApi.csproj", "{9517FB2D-8C3F-4F99-9DFE-8F791AE94F18}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OptocoderHrmApi.Data", "OptocoderHrmApi.Data\OptocoderHrmApi.Data.csproj", "{FBF541BC-908A-4168-92A1-B2492CAF1BCD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OptocoderHrmApi.Data", "OptocoderHrmApi.Data\OptocoderHrmApi.Data.csproj", "{FBF541BC-908A-4168-92A1-B2492CAF1BCD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OptocoderHrmApi.Service", "OptocoderHrmApi.Service\OptocoderHrmApi.Service.csproj", "{DB8319A1-5E78-42B3-994D-67414F0A2007}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OptocoderHrmApi.Service", "OptocoderHrmApi.Service\OptocoderHrmApi.Service.csproj", "{DB8319A1-5E78-42B3-994D-67414F0A2007}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OptocoderHrmApi.Repository", "OptocoderHrmApi.Repository\OptocoderHrmApi.Repository.csproj", "{B402EE95-990E-46AC-A166-C0B148D9EA03}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OptocoderHrmApi.Repository", "OptocoderHrmApi.Repository\OptocoderHrmApi.Repository.csproj", "{B402EE95-990E-46AC-A166-C0B148D9EA03}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
