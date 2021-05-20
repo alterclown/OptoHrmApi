@@ -1,5 +1,6 @@
 ﻿using OptocoderHrmApi.Data.Entities;
 using OptocoderHrmApi.Data.Paging;
+using OptocoderHrmApi.Data.ViewModels;
 using OptocoderHrmApi.Repository.HrmRepository;
 using System;
 using System.Collections.Generic;
@@ -16,6 +17,8 @@ namespace OptocoderHrmApi.Service.HrmService
         Task<int> GetAttendanceCount();
         Task<string> DeleteAttendance(int id);
         Task<string> UpdateAttendance(int id, Attendance attendance);
+        Task<ICollection<Attendance>> SortAttendance(string sortOrder);
+        Task<IEnumerable<Attendance>> GetAttendanceListByAttendanceNote();
     }
 
     public class AttendanceService : IAttendanceService
@@ -87,6 +90,34 @@ namespace OptocoderHrmApi.Service.HrmService
             try
             {
                 var res = await _repository.GetAttendanceList(paging);
+                return res;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
+        public async Task<IEnumerable<Attendance>> GetAttendanceListByAttendanceNote()
+        {
+            try
+            {
+                var res = await _repository.GetAttendanceListByAttendanceNote();
+                return res;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
+        public async Task<ICollection<Attendance>> SortAttendance(string sortOrder)
+        {
+            try
+            {
+                var res = await _repository.SortAttendance(sortOrder);
                 return res;
             }
             catch (Exception ex)

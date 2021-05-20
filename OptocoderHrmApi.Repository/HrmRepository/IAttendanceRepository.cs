@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using OptocoderHrmApi.Data.Paging;
+using OptocoderHrmApi.Data.ViewModels;
 
 namespace OptocoderHrmApi.Repository.HrmRepository
 {
@@ -19,6 +20,8 @@ namespace OptocoderHrmApi.Repository.HrmRepository
 
         Task<string> DeleteAttendance(int id);
         Task<string> UpdateAttendance(int id, Attendance attendance);
+        Task<ICollection<Attendance>> SortAttendance(string sortOrder);
+        Task<IEnumerable<Attendance>> GetAttendanceListByAttendanceNote();
     }
 
     public class AttendanceRepository : IAttendanceRepository
@@ -92,28 +95,60 @@ namespace OptocoderHrmApi.Repository.HrmRepository
         {
             try
             {
-                //int CurrentPage = paging.PageNumber;
-                //int PageSize = paging.PageSize;
-                //var items = await _context.Attendances.Skip((CurrentPage - 1) * PageSize).Take(PageSize).ToListAsync();
-                //return items;
-
-                //var validFilter = new Paging(paging.PageNumber, paging.PageSize);
-                //var pagedData = await _context.Attendances
-                //    .Skip((validFilter.PageNumber - 1) * validFilter.PageSize)
-                //    .Take(validFilter.PageSize)
-                //    .ToListAsync();
-                //var totalRecords = await _context.Attendances.CountAsync();
-                //var pagedReponse = PaginationHelper.CreatePagedReponse<Attendance>(pagedData, validFilter, totalRecords);
-                //return (ICollection<Attendance>)pagedReponse;
-
                 var validFilter = new Paging(paging.PageNumber, paging.PageSize);
                 var pagedData = await _context.Attendances
                    .Skip((validFilter.PageNumber - 1) * validFilter.PageSize)
                    .Take(validFilter.PageSize)
                    .ToListAsync();
-                //var totalRecords = await _context.Attendances.CountAsync();
-                //var pagedReponse = PaginationHelper.CreatePagedReponse<Attendance>(pagedData, validFilter, totalRecords);
                 return pagedData;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
+        public async Task<IEnumerable<Attendance>> GetAttendanceListByAttendanceNote()
+        {
+            try
+            {
+                var attendanceList = await _context.Attendances.ToListAsync();
+                var result =  _context.Attendances.Select(test=> new Attendance() {
+                    AttendanceId = test.AttendanceId,
+                    Note = test.Note
+                });
+                return await result.ToListAsync();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
+        public async Task<ICollection<Attendance>> SortAttendance(string sortOrder)
+        {
+            try
+            {
+                var res = from s in _context.Attendances
+                               select s;
+                switch (sortOrder)
+                {
+                    case "name_desc":
+                        res = res.OrderByDescending(s => s.AttendanceId);
+                        break;
+                    case "Date":
+                        res = res.OrderBy(s => s.Note);
+                        break;
+                    case "date_desc":
+                        res = res.OrderByDescending(s => s.TimeOut);
+                        break;
+                    default:
+                        res = res.OrderBy(s => s.AttendanceId);
+                        break;
+                }
+                return await res.AsNoTracking().ToListAsync();
             }
             catch (Exception ex)
             {

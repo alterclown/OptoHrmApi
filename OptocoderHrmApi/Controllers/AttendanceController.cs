@@ -43,6 +43,27 @@ namespace OptocoderHrmApi.Controllers
 
         }
 
+        [HttpGet]
+        [Route("GetAttendanceByNote")]
+        public async Task<IActionResult> GetAttendanceListByNote()
+        {
+            try
+            {
+                var response = await _service.GetAttendanceListByAttendanceNote();
+                if (response != null)
+                {
+                    return Ok(response);
+                }
+                return StatusCode(StatusCodes.Status204NoContent);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+
+        }
+
         // GET: Company/Details/5
         [HttpGet]
         [Route("GetAttendanceById/{AttendanceId}")]
@@ -62,6 +83,27 @@ namespace OptocoderHrmApi.Controllers
 
                 throw ex;
             }
+        }
+
+        [HttpGet]
+        [Route("SortList")]
+        public async Task<IActionResult> SortedList(string sortOrder)
+        {
+            try
+            {
+                var response = await _service.SortAttendance(sortOrder);
+                if (response != null)
+                {
+                    return Ok(response);
+                }
+                return StatusCode(StatusCodes.Status204NoContent);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+
         }
 
         [HttpPost]
