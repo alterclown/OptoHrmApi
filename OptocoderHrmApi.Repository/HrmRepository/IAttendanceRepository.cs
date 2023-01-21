@@ -37,6 +37,7 @@ namespace OptocoderHrmApi.Repository.HrmRepository
             try
             {
                 _context.Attendances.Add(attendance);
+                //_context.Attendances.Add(attendance);
                 await _context.SaveChangesAsync();
                 return attendance;
             }
